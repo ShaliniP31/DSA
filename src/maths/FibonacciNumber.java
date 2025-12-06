@@ -7,7 +7,7 @@ public class FibonacciNumber {
 
         for (int i = 2; i < n; i++) {
            int temp = n1;
-           n1 = n1 + n2;
+           n1 = n2;
            n2 += temp;
         }
 
