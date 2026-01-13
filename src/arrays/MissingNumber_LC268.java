@@ -1,4 +1,4 @@
-package maths;
+package arrays;
 
 public class MissingNumber_LC268 {
     public static void main(String[] args) {
@@ -16,5 +16,15 @@ public class MissingNumber_LC268 {
         int sum = (n*(n+1))/2;
 
         return sum - arrSum;
+    }
+
+    public static int missingNumber2(int[] nums) {
+        int xor1 = 0, xor2 = 0;
+        for (int i = 0; i < nums.length; i++) {
+            xor1 ^= nums[i];
+            xor2 ^= i;
+        }
+        xor2 ^= nums.length;
+        return xor1 ^ xor2;
     }
 }
