@@ -13,7 +13,8 @@ public class QuickSort {
 
     public static void quickSort(int[] nums, int low, int high) {
         if (low < high) {
-            int partitionIdx = getPartitionIdx(nums, low, high);
+//            int partitionIdx = getPartitionIdx(nums, low, high);
+            int partitionIdx = getPartitionIdxDesc(nums, low, high);
             quickSort(nums, low, partitionIdx - 1);
             quickSort(nums, partitionIdx + 1, high);
         }
@@ -37,6 +38,20 @@ public class QuickSort {
         int temp = nums[i];
         nums[i] = nums[j];
         nums[j] = temp;
+    }
+
+    public static int getPartitionIdxDesc(int[] nums, int low, int high) {
+        int pivot = nums[low], i = low, j = high;
+        while (i<j){
+            while(i<=high && nums[i]>=pivot)
+                i++;
+            while (j>=low && nums[j]<pivot)
+                j--;
+            if(i<j)
+                swap(nums, i, j);
+        }
+        swap(nums, low, j);
+        return j;
     }
 
     public static void printArray(int[] nums) {
