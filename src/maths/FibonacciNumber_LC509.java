@@ -1,6 +1,6 @@
 package maths;
 
-public class FibonacciNumber {
+public class FibonacciNumber_LC509 {
     public static void main(String[] args) {
         int n = 5;
         System.out.println(fib(n));
