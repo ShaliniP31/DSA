@@ -6,7 +6,8 @@ public class Move012_LC75 {
         int[] nums = {2, 0, 2, 1, 1, 0};
         printArray(nums);
 
-        sortColors1(nums);
+//        sortColors1(nums);
+        sortColors2(nums);
         printArray(nums);
     }
 
@@ -41,5 +42,27 @@ public class Move012_LC75 {
         for (int i = 0; i < c2; i++) {
             nums[j++] = 2;
         }
+    }
+
+    public static void sortColors2(int[] nums) {
+        int low = 0, mid = 0, high = nums.length - 1;
+        while (mid <= high) {
+            if (nums[mid] == 0) {
+                swap(nums, low, mid);
+                low++;
+                mid++;
+            } else if (nums[mid] == 1) {
+                mid++;
+            } else {
+                swap(nums, mid, high);
+                high--;
+            }
+        }
+    }
+
+    public static void swap(int[] nums, int a, int b) {
+        int temp = nums[a];
+        nums[a] = nums[b];
+        nums[b] = temp;
     }
 }

@@ -2,40 +2,34 @@ package linkedlist.sll;
 
 public class DeleteElementsSLL {
     public static void main(String[] args) {
-        int[] nums = {2, 5, 7, 1, 8};
-        Node head = createLLFromArray(nums);
+        ListNode head = new ListNode(2);
+        ListNode n2 = new ListNode(5);
+        ListNode n3 = new ListNode(7);
+        ListNode n4 = new ListNode(1);
+        ListNode n5 = new ListNode(8);
+        head.next = n2;
+        n2.next = n3;
+        n3.next = n4;
+        n4.next = n5;
 
-//        Node head = null;
-        head = deleteAtKPos(head, 3);
-//        printLL(head);
-
-//        System.out.println();
-//        head = deleteNodeByValue(head, 81);
+//        head = deleteAtKPos(head, 8);
+        head = deleteNodeByValue(head, 81);
         printLL(head);
+
     }
 
-    static Node createLLFromArray(int[] nums) {
-        Node head = new Node(nums[0]);
-        Node move = head;
-        for (int i = 1; i < nums.length; i++) {
-            Node curr = new Node(nums[i]);
-            move.next = curr;
-            move = curr;
-        }
-        return head;
-    }
-
-    static void printLL(Node head) {
-        Node curr = head;
+    static void printLL(ListNode head) {
+        ListNode curr = head;
         System.out.print("[ ");
         while (curr != null) {
-            System.out.print(curr.data + " ");
+            System.out.print(curr.val + " ");
             curr = curr.next;
         }
         System.out.print("]");
+        System.out.println();
     }
 
-    static Node deleteAtKPos(Node head, int k) {
+    static ListNode deleteAtKPos(ListNode head, int k) {
         if (head == null) {
             return head;
         }
@@ -45,8 +39,8 @@ public class DeleteElementsSLL {
             return head;
         }
 
-        Node curr = head;
-        Node prev = null;
+        ListNode curr = head;
+        ListNode prev = null;
         int count = 1;
 
         while (count != k && curr != null) {
@@ -67,20 +61,20 @@ public class DeleteElementsSLL {
             return head;
         }
 
-        curr.data = curr.next.data;
+        curr.val = curr.next.val;
         curr.next = curr.next.next;
 
         return head;
     }
 
-    static Node deleteNodeByValue(Node head, int v) {
+    static ListNode deleteNodeByValue(ListNode head, int v) {
         if (head == null)
             return head;
 
-        Node curr = head;
-        Node prev = null;
+        ListNode curr = head;
+        ListNode prev = null;
         while (curr != null) {
-            if (curr.data == v) {
+            if (curr.val == v) {
                 break;
             }
             prev = curr;
@@ -95,17 +89,17 @@ public class DeleteElementsSLL {
             return head;
         }
 
-        curr.data = curr.next.data;
+        curr.val = curr.next.val;
         curr.next = curr.next.next;
         return head;
     }
 
-    static class Node {
-        int data;
-        Node next;
+    static class ListNode {
+        int val;
+        ListNode next;
 
-        Node(int data) {
-            this.data = data;
+        ListNode(int val) {
+            this.val = val;
             this.next = null;
         }
     }

@@ -1,6 +1,6 @@
 package linkedlist.sll;
 
-public class MiddleElementOfSLL {
+public class MiddleElementOfSLL_LC876 {
     public static void main(String[] args) {
         int[] nums = {2, 5, 7, 1, 8, 9};
         Node head = createLLFromArray(nums);

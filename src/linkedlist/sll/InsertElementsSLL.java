@@ -2,58 +2,55 @@ package linkedlist.sll;
 
 public class InsertElementsSLL {
     public static void main(String[] args) {
-        int[] nums = {2, 5, 7, 1, 8};
-        Node head = createLLFromArray(nums);
+        ListNode head = new ListNode(2);
+        ListNode n2 = new ListNode(5);
+        ListNode n3 = new ListNode(7);
+        ListNode n4 = new ListNode(1);
+        ListNode n5 = new ListNode(8);
+        head.next = n2;
+        n2.next = n3;
+        n3.next = n4;
+        n4.next = n5;
+        printLL(head);
 
-//        Node head = null;
-//        head = insertAtKPos(head, 56, 9);
-//        head = insertBeforeGivenValue(head, 56, 71);
-        head = insertAfterGivenValue(head, 56, 7);
+//        head = insertAtKPos(head, 56, 61);
+//        head = insertAfterGivenValue(head, 56, 81);
+        head = insertBeforeGivenValue(head, 56, 2);
         printLL(head);
     }
 
-    static Node createLLFromArray(int[] nums) {
-        Node head = new Node(nums[0]);
-        Node move = head;
-        for (int i = 1; i < nums.length; i++) {
-            Node curr = new Node(nums[i]);
-            move.next = curr;
-            move = curr;
-        }
-        return head;
-    }
-
-    static void printLL(Node head) {
-        Node curr = head;
+    static void printLL(ListNode head) {
+        ListNode curr = head;
         System.out.print("[ ");
         while (curr != null) {
-            System.out.print(curr.data + " ");
+            System.out.print(curr.val + " ");
             curr = curr.next;
         }
         System.out.print("]");
+        System.out.println();
     }
 
-    static Node insertAtKPos(Node head, int v, int p) {
+    static ListNode insertAtKPos(ListNode head, int v, int p) {
         if (head == null) {
-            return new Node(v);
+            return new ListNode(v);
         }
 
         //insert at head
         if (p == 1) {
-            Node curr = new Node(v);
+            ListNode curr = new ListNode(v);
             curr.next = head;
             return curr;
         }
         int count = 1;
-        Node curr = head;
-        Node prev = null;
+        ListNode curr = head;
+        ListNode prev = null;
         while (count != p && curr != null) {
             count++;
             prev = curr;
             curr = curr.next;
         }
 
-        Node insert = new Node(v);
+        ListNode insert = new ListNode(v);
         if (curr == null) {
             prev.next = insert;
             return head;
@@ -63,17 +60,16 @@ public class InsertElementsSLL {
         return head;
     }
 
-
     //ev is value existing in the ll, add before the ev only.
-    static Node insertBeforeGivenValue(Node head, int v, int ev) {
+    static ListNode insertBeforeGivenValue(ListNode head, int v, int ev) {
         if (head == null) {
             return null;
         }
 
-        Node curr = head;
+        ListNode curr = head;
         while (curr.next != null) {
-            if (curr.next.data == ev) {
-                Node insert = new Node(v);
+            if (curr.next.val == ev) {
+                ListNode insert = new ListNode(v);
                 insert.next = curr.next;
                 curr.next = insert;
                 break;
@@ -83,15 +79,15 @@ public class InsertElementsSLL {
         return head;
     }
 
-    static Node insertAfterGivenValue(Node head, int v, int ev) {
+    static ListNode insertAfterGivenValue(ListNode head, int v, int ev) {
         if (head == null) {
             return null;
         }
 
-        Node curr = head;
+        ListNode curr = head;
         while (curr != null) {
-            if (curr.data == ev) {
-                Node insert = new Node(v);
+            if (curr.val == ev) {
+                ListNode insert = new ListNode(v);
                 insert.next = curr.next;
                 curr.next = insert;
                 break;
@@ -101,13 +97,14 @@ public class InsertElementsSLL {
         return head;
     }
 
-    static class Node {
-        int data;
-        Node next;
+    static class ListNode {
+        int val;
+        ListNode next;
 
-        Node(int data) {
-            this.data = data;
+        ListNode(int val) {
+            this.val = val;
             this.next = null;
         }
     }
+
 }
